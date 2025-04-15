@@ -1,0 +1,13 @@
+frontend:
+  image: jinitus/frontend:v1 #testing by changing
+  port: 5000
+
+backend:
+  image: jinitus/backend:latest
+  port: 5000
+
+mysql:
+  image: mysql:5.7
+  rootPassword: rootpass
+  dbName: userdb
+
