@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-net
+
+  backend:
+    image: jinitus/backend:latest
+    depends_on:
+      - mysql
+    networks:
+      - app-net
+
+  frontend:
+    image: jinitus/frontend:latest
+    depends_on:
+      - backend
+    ports:
+      - "8080:5000"
+    networks:
+      - app-net
+
+volumes:
+  mysql_data:
+
+networks:
+  app-net:
